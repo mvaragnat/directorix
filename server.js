@@ -5,7 +5,7 @@ var bodyParser     = require('body-parser'); //BodyParser pour POST
 var http           = require('http').Server(app);      //préparer le serveur web
 var dotenv         = require('dotenv')
 //var passport       = require('passport')
-//var expressSession = require('express-session')
+var expressSession = require('express-session')
 //var flash          = require('connect-flash')
 
 // configuration ===========================================
@@ -19,9 +19,11 @@ dotenv.load()
 app.use(express.static(__dirname + '/public'))
 
 // config files
+// database (always before models !)
+require('./config/db')
 
 //  models
-//var User = require('./app/models/users');
+var User = require('./app/models/users');
 
 //parsing
 app.use(bodyParser.json()); // for parsing application/json
@@ -32,11 +34,11 @@ app.set('view engine', 'ejs')
 
 // Configuring Sessions, Flash, and Passport
 // var configPassport = require('./config/passport')
-// app.use(expressSession({
-//   secret: 'thisisakeyforthepigeonsession',
-//   resave: true,
-//   saveUninitialized: true }
-// ))
+app.use(expressSession({
+  secret: 'thisisakeyforthedirectorixsession',
+  resave: true,
+  saveUninitialized: true }
+))
 // app.use(flash())
 // app.use(passport.initialize())
 // app.use(passport.session())

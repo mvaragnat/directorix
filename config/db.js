@@ -6,7 +6,10 @@ var options = {
 };
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/test', options, function (err) {
   if (err) {
-    console.log('MongoDB error')
+    console.log('MongoDB error', err)
     throw err
+  }
+  else {
+    console.log('MongoDB connected!')
   }
 })

@@ -1,1 +1,30 @@
-test
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <body>
+    <h1>Directorix</h1>
+    <h2>Radix address book</h2>
+    <section>
+      <h2>Your address</h2>
+      <% if (error) { %>
+        <p>
+          Error : <%- error %>
+        </p>
+      <% } else if (user) { %>
+        <p>
+          Address : <%- user.address %>
+        </p>
+        <p>
+          Pseudo : <%- user.name %>
+        </p>
+      <% } else { %>
+        <p>
+          Address : <%- address %>
+        </p>
+        <form action="/register" method="post">
+          <input type="text" name='name' required placeholder="Your pseudonym" />
+          <input type="submit" value="Register your address" />
+        </form>
+      <% } %>
+    </section>
+  </body>
+</html>
